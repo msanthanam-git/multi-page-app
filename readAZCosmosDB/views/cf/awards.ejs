@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Awards List</h1>
+    <ul>
+      <%
+        var list = '';
+        for (i = 0; i < awardslist.length; i++) {
+          list += '<li>' + "Short name: " + awardslist[i].short + ", Long Name: " + awardslist[i].long + '</li>';
+        }
+      %>
+     
+    </ul>
+    <%- list %>
+  </body>
+</html>

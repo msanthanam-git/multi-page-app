@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: read-cosmos-db
+spec:
+  selector:
+    matchLabels:
+      app: read-cosmos-db
+  template:
+    metadata:
+      labels:
+        app: read-cosmos-db
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: read-cosmos-db
+        image: onewebdev.azurecr.io/samples/read-cosmos-db:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: read-cosmos-db
+spec:
+  selector:
+    app: read-cosmos-db
+  ports:
+  - port: 80    
+  type: LoadBalancer
